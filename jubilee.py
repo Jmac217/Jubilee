@@ -87,7 +87,7 @@ description_label.grid(row=0, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create a label for the image
 image_label = tk.Label(window, image=image)
-image_label.grid(row=0, column=1, padx=10, pady=10)
+image_label.grid(row=0, column=2, padx=10, pady=10)
 
 # Create a filename entry for the audio button
 audio_filename_entry = tk.StringVar()
@@ -155,7 +155,7 @@ video_filename_entry.grid(row=8, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the start button
 start_button = tk.Button(window, text="Start Image/Audio Conversion", command=on_start_button_clicked)
-start_button.grid(row=8, column=1, padx=10, pady=10, sticky='nsew')
+start_button.grid(row=8, column=1, padx=10, pady=10, sticky='nsew', columnspan=3)
 
 # Create a text widget for output
 output_text = tk.Text(window)
