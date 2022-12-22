@@ -19,7 +19,7 @@ def on_audio_button_clicked():
 def on_download_button_clicked():
   url = url_entry.get()
   output_filename = download_filename_entry.get()
-  command = ['download-dl', '-o', output_filename, url]
+  command = ['youtube-dl', '-o', output_filename, url]
   process = subprocess.Popen(command, stdout=subprocess.PIPE)
 
   # Iterate over the lines of output and insert them into the text widget
@@ -86,11 +86,11 @@ image_label.grid(row=0, column=1, padx=10, pady=10)
 # Create a filename entry for the audio button
 audio_filename_entry = tk.StringVar()
 audio_filename_entry = tk.Entry(window, textvariable=audio_filename_entry, width=50)
-audio_filename_entry.insert(0, "output.mp4")
+audio_filename_entry.insert(0, "output.mp3")
 audio_filename_entry.grid(row=1, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the audio button
-audio_button = tk.Button(window, text="Audio", command=on_audio_button_clicked)
+audio_button = tk.Button(window, text="Video to Audio", command=on_audio_button_clicked)
 audio_button.grid(row=1, column=1, padx=10, pady=10, sticky='nsew')
 
 # Create a horizontal separator
@@ -104,7 +104,7 @@ download_filename_entry.insert(0, "output.mp4")
 download_filename_entry.grid(row=3, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the download button
-download_button = tk.Button(window, text="Download", command=on_download_button_clicked)
+download_button = tk.Button(window, text="Download Video", command=on_download_button_clicked)
 download_button.grid(row=3, column=1, padx=10, pady=10, sticky='nsew')
 
 # Create a URL entry field
@@ -124,7 +124,7 @@ image_filename_entry.insert(0, "image.png")
 image_filename_entry.grid(row=6, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the image button
-image_button = tk.Button(window, text="Image", command=on_image_button_clicked)
+image_button = tk.Button(window, text="Select Image", command=on_image_button_clicked)
 image_button.grid(row=6, column=1, padx=10, pady=10, sticky='nsew')
 
 # Create a filename entry for the MP3 button
@@ -134,7 +134,7 @@ mp3_filename_entry.insert(0, "audio.mp3")
 mp3_filename_entry.grid(row=7, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the MP3 button
-mp3_button = tk.Button(window, text="MP3", command=on_mp3_button_clicked)
+mp3_button = tk.Button(window, text="Select Audio", command=on_mp3_button_clicked)
 mp3_button.grid(row=7, column=1, padx=10, pady=10, sticky='nsew')
 
 # Create a filename entry for the video
@@ -144,7 +144,7 @@ video_filename_entry.insert(0, "video.mp4")
 video_filename_entry.grid(row=8, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the start button
-start_button = tk.Button(window, text="Start", command=on_start_button_clicked)
+start_button = tk.Button(window, text="Start Sound and Image Video", command=on_start_button_clicked)
 start_button.grid(row=8, column=1, padx=10, pady=10, sticky='nsew')
 
 # Create a text widget for output
