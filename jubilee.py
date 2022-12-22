@@ -4,10 +4,16 @@ import tkinter.filedialog
 import subprocess
 
 # Function to handle the "Audio" button click
-def on_audio_button_clicked():
+def on_select_audio_button_clicked():
   file = tkinter.filedialog.askopenfilename()
+  audio_filename_entry.delete(0, tk.END)
+  audio_filename_entry.insert(0, file)
   output_filename = audio_filename_entry.get()
-  command = ['ffmpeg', '-i', file, output_filename]
+
+# Function to handle the "Audio" button click
+def on_start_audio_button_clicked():
+  output_filename = audio_filename_entry.get()
+  command = ['ffmpeg', '-i', output_filename, output_filename + '.mp3']
 
   try:
     output = subprocess.check_output(command, stderr=subprocess.STDOUT)
@@ -90,32 +96,36 @@ audio_filename_entry.insert(0, "output.mp3")
 audio_filename_entry.grid(row=1, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the audio button
-audio_button = tk.Button(window, text="Video to Audio", command=on_audio_button_clicked)
-audio_button.grid(row=1, column=1, padx=10, pady=10, sticky='nsew')
+select_audio_button = tk.Button(window, text="Select Video", command=on_select_audio_button_clicked)
+select_audio_button.grid(row=1, column=1, padx=10, pady=10, sticky='nsew')
+
+# Create the audio button
+start_audio_button = tk.Button(window, text="Start Audio Conversion", command=on_start_audio_button_clicked)
+start_audio_button.grid(row=1, column=2, padx=10, pady=10, sticky='nsew')
 
 # Create a horizontal separator
 separator = ttk.Separator(window, orient="horizontal")
-separator.grid(row=2, column=0, padx=10, pady=10, sticky='nsew', columnspan=2)
+separator.grid(row=2, column=0, padx=10, pady=10, sticky='nsew', columnspan=3)
 
 # Create a filename entry for the download button
 download_filename_entry = tk.StringVar()
 download_filename_entry = tk.Entry(window, textvariable=download_filename_entry, width=50)
 download_filename_entry.insert(0, "output.mp4")
-download_filename_entry.grid(row=3, column=0, padx=10, pady=10, sticky='nsew')
+download_filename_entry.grid(row=4, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the download button
-download_button = tk.Button(window, text="Download Video", command=on_download_button_clicked)
-download_button.grid(row=3, column=1, padx=10, pady=10, sticky='nsew')
+download_button = tk.Button(window, text="Start Video Download", command=on_download_button_clicked)
+download_button.grid(row=4, column=1, padx=10, pady=10, sticky='nsew', columnspan=2)
 
 # Create a URL entry field
 url_entry = tk.StringVar()
 entry = tk.Entry(window, textvariable=url_entry, width=50)
 entry.insert(0, "URL")
-entry.grid(row=4, column=0, padx=10, pady=10, sticky='nsew')
+entry.grid(row=3, column=0, padx=10, pady=10, sticky='nsew', columnspan=3)
 
 # Create a horizontal separator
 separator = ttk.Separator(window, orient="horizontal")
-separator.grid(row=5, column=0, padx=10, pady=10, sticky='nsew', columnspan=2)
+separator.grid(row=5, column=0, padx=10, pady=10, sticky='nsew', columnspan=3)
 
 # Create a filename entry for the image button
 image_filename_entry = tk.StringVar()
@@ -125,7 +135,7 @@ image_filename_entry.grid(row=6, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the image button
 image_button = tk.Button(window, text="Select Image", command=on_image_button_clicked)
-image_button.grid(row=6, column=1, padx=10, pady=10, sticky='nsew')
+image_button.grid(row=6, column=1, padx=10, pady=10, sticky='nsew', columnspan=2)
 
 # Create a filename entry for the MP3 button
 mp3_filename_entry = tk.StringVar()
@@ -135,7 +145,7 @@ mp3_filename_entry.grid(row=7, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the MP3 button
 mp3_button = tk.Button(window, text="Select Audio", command=on_mp3_button_clicked)
-mp3_button.grid(row=7, column=1, padx=10, pady=10, sticky='nsew')
+mp3_button.grid(row=7, column=1, padx=10, pady=10, sticky='nsew', columnspan=2)
 
 # Create a filename entry for the video
 video_filename_entry = tk.StringVar()
@@ -144,11 +154,11 @@ video_filename_entry.insert(0, "video.mp4")
 video_filename_entry.grid(row=8, column=0, padx=10, pady=10, sticky='nsew')
 
 # Create the start button
-start_button = tk.Button(window, text="Start Sound and Image Video", command=on_start_button_clicked)
+start_button = tk.Button(window, text="Start Image/Audio Conversion", command=on_start_button_clicked)
 start_button.grid(row=8, column=1, padx=10, pady=10, sticky='nsew')
 
 # Create a text widget for output
 output_text = tk.Text(window)
-output_text.grid(row=9, column=0, padx=10, pady=10, sticky='nsew', columnspan=2)
+output_text.grid(row=9, column=0, padx=10, pady=10, sticky='nsew', columnspan=3)
 
 window.mainloop()
